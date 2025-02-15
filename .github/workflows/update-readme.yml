@@ -1,0 +1,26 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Запуск каждый день в 00:00 UTC
+  workflow_dispatch:  # Позволяет запускать вручную
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout репозиторий
+        uses: actions/checkout@v4
+
+      - name: Обновление даты в README.md
+        run: |
+          TODAY=$(date "+%Y-%m-%d")
+          sed -i "s/<!--LAST_UPDATE-->.*/<!--LAST_UPDATE--> $TODAY/" README.md
+
+      - name: Коммит изменений
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add README.md
+          git commit -m "Автообновление даты: $TODAY" || echo "Изменений нет"
+          git push
