@@ -13,4 +13,4 @@ A simple command-line calculator built with Python.
 2. Clone this repository:
 ---
 
-📅 Last updated: <!--LAST_UPDATE--> 2026-03-14
+📅 Last updated: <!--LAST_UPDATE--> 2026-03-15
